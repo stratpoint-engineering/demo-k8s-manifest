@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+namePrefix: prod-
+namespace: production
+commonLabels:
+  environment: production
+patchesStrategicMerge:
+- config.yaml
+images:
+- name: ghcr.io/your-org/express-app
+  newName: ghcr.io/your-org/express-app
+  newTag: latest  # Will be updated by GitHub Actions
