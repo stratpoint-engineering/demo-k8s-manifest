@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: express-app-staging
+  name: demo-nodejs-gitops-staging
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/$\{ORG_NAME\}/k8s-manifests.git
     targetRevision: HEAD
-    path: apps/express-app/overlays/staging
+    path: apps/demo-nodejs-gitops/overlays/staging
   destination:
     server: https://kubernetes.default.svc
-    namespace: staging
+    namespace: dev
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true

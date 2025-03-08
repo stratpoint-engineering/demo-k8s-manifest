@@ -2,44 +2,44 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: express-app
+  name: demo-nodejs-gitops
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: express-app
+      app: demo-nodejs-gitops
   template:
     metadata:
       labels:
-        app: express-app
+        app: demo-nodejs-gitops
     spec:
       containers:
-      - name: express-app
-        image: ghcr.io/your-org/express-app:latest  # Will be updated by kustomize
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 3000
-        env:
-        - name: NODE_ENV
-          value: production
-        - name: PORT
-          value: "3000"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 3000
-          initialDelaySeconds: 10
-          periodSeconds: 15
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 3000
-          initialDelaySeconds: 5
-          periodSeconds: 10
-        resources:
-          limits:
-            cpu: 500m
-            memory: 512Mi
-          requests:
-            cpu: 100m
-            memory: 128Mi
+        - name: demo-nodejs-gitops
+          image: ghcr.io/stratpoint-engineering/demo-nodejs-gitops:latest # Will be updated by kustomize
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "3000"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi

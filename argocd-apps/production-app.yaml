@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: express-app-production
+  name: demo-nodejs-gitops-production
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/$\{ORG_NAME\}/k8s-manifests.git
     targetRevision: HEAD
-    path: apps/express-app/overlays/production
+    path: apps/demo-nodejs-gitops/overlays/production
   destination:
     server: https://kubernetes.default.svc
-    namespace: production
+    namespace: prod
   syncPolicy:
     automated:
       prune: true
-      selfHeal: false  # Requires manual sync for production
+      selfHeal: false # Requires manual sync for production
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true

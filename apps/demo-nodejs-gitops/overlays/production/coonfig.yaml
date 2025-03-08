@@ -1,0 +1,18 @@
+# overlays/production/config.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-nodejs-gitops
+spec:
+  replicas: 3
+  template:
+    spec:
+      containers:
+        - name: demo-nodejs-gitops
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1Gi
+            requests:
+              cpu: 200m
+              memory: 256Mi

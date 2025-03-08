@@ -5,7 +5,7 @@ Kubernetes configuration for our applications managed via GitOps.
 ## Structure
 
 - `apps/`: Application manifests
-  - `express-app/`: Express.js application manifests
+  - `demo-nodejs-gitops/`: Express.js application manifests
     - `base/`: Base configuration
     - `overlays/`: Environment-specific configurations
       - `staging/`: Staging environment
